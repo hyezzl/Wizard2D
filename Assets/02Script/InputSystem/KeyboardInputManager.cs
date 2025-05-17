@@ -6,7 +6,7 @@ public class KeyboardInputManager : MonoBehaviour, IInputHandler
 {
     public Vector2 GetInput()
     {
-        return new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        return new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     }
 
     public int GetDir() {
@@ -14,4 +14,5 @@ public class KeyboardInputManager : MonoBehaviour, IInputHandler
         if (Input.GetKey(KeyCode.LeftArrow)) return -1;
         return 0;
     }
+
 }

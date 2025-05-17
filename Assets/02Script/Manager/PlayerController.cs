@@ -36,7 +36,15 @@ public class PlayerController : MonoBehaviour, IObjectControl
 
     public void UpdateGame(Vector2 newDir)
     {
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            movement?.StartDash(newDir);
+        }
+    }
+
+    public void FixedUpdateGame(Vector2 newDir)
+    {
         movement?.Move(newDir);
+        movement?.Dash(newDir);
     }
 
     public void DirUpdate(int key)

@@ -8,5 +8,9 @@ public interface IMovement
 
     void SetDir(int key);
 
+    void StartDash(Vector2 dir);   
+
+    void Dash(Vector2 dir);
+
     void SetEnable(bool newEnable);
 }

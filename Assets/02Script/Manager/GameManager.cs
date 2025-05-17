@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -39,6 +40,11 @@ public class GameManager : Singleton<GameManager>
             pc?.DirUpdate(curInputSystem.GetDir());
         }
     }
+
+    private void FixedUpdate() {
+        pc?.FixedUpdateGame(curInputSystem.GetInput());
+    }
+
 
     IEnumerator StartGame() {
         yield return null;
