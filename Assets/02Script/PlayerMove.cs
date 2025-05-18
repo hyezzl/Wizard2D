@@ -15,10 +15,15 @@ public class PlayerMove : MonoBehaviour, IMovement
     private Rigidbody2D rig; 
     private float dashTimer = 0f;
 
+    private Animator anim;
+
     private void Awake()
     {
         if (TryGetComponent<Rigidbody2D>(out rig)) {
             rig.gravityScale = 0f;
+        }
+        if (!TryGetComponent<Animator>(out anim)) {
+            Debug.Log("PlayerMove - amim 참조실패");
         }
     }
 
@@ -53,6 +58,8 @@ public class PlayerMove : MonoBehaviour, IMovement
             // Move중에만 대시 사용가능, 대시 중첩불가
             isDashing = true;
             dashTimer = 0f;
+
+            anim.SetBool("isDashing", isDashing);
         }
     }
 
@@ -70,7 +77,10 @@ public class PlayerMove : MonoBehaviour, IMovement
             if (dashTimer >= dashDuration) {
                 isDashing = false;
                 rig.velocity = Vector2.zero;
+
+                anim.SetBool("isDashing", isDashing);
             }
+
         }
     }
 
