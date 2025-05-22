@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IWeapon
 {
-    void Fire();
+    void Fire(Vector2 newDir);
 
     void SetOwner();
 

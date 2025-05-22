@@ -6,32 +6,40 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour, IObjectControl
 {
     private IMovement movement;
+    private IWeapon curWeapon;
 
     private void Awake()
     {
         if (!TryGetComponent<IMovement>(out movement)) {
             Debug.Log("PlayerController.cs - movement 참조 실패");
         }
+        if (!TryGetComponent<IWeapon>(out curWeapon)) {
+            Debug.Log("PlayerController.cs - curWeapon 참조 실패");
+        }
     }
 
     public void RestartGame()
     {
-        movement.SetEnable(true);
+        movement?.SetEnable(true);
+        curWeapon?.SetEnable(true);
     }
 
     public void ResumeGame()
     {
-        movement.SetEnable(true);
+        movement?.SetEnable(true);
+        curWeapon?.SetEnable(true);
     }
 
     public void StartGame()
     {
-        movement.SetEnable(true);
+        movement?.SetEnable(true);
+        curWeapon?.SetEnable(true);
     }
 
     public void StopGame()
     {
-        movement.SetEnable(false);
+        movement?.SetEnable(false);
+        curWeapon?.SetEnable(false);
     }
 
     public void UpdateGame(Vector2 newDir)
@@ -39,6 +47,7 @@ public class PlayerController : MonoBehaviour, IObjectControl
         if (Input.GetKeyDown(KeyCode.Space)) {
             movement?.StartDash(newDir);
         }
+        curWeapon?.Fire(newDir);
     }
 
     public void FixedUpdateGame(Vector2 newDir)

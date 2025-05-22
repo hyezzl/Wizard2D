@@ -8,6 +8,7 @@ public class GameManager : Singleton<GameManager>
 {
     IInputHandler curInputSystem;
     private PlayerController pc;
+    private ProjectileManager pm;
 
 
 
@@ -25,7 +26,13 @@ public class GameManager : Singleton<GameManager>
         if (pc == null) {
             Debug.Log("GameManager.cs - LoadSceneInit - PlayerManager 참조실패");
         }
-    
+
+        pm = FindAnyObjectByType<ProjectileManager>();
+        if (pm == null)
+        {
+            Debug.Log("GameManager.cs - LoadSceneInit - ProjectileManager 참조실패");
+        }
+
     }
 
     private void Start()
