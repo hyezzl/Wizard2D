@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour, IObjectControl
 {
     private IMovement movement;
     private IWeapon curWeapon;
+    private IDash dash;
+    private Vector2 inputDir;
 
     private void Awake()
     {
@@ -14,7 +16,10 @@ public class PlayerController : MonoBehaviour, IObjectControl
             Debug.Log("PlayerController.cs - movement 참조 실패");
         }
         if (!TryGetComponent<IWeapon>(out curWeapon)) {
-            Debug.Log("PlayerController.cs - curWeapon 참조 실패");
+            Debug.Log("PlayerController.cs - IWeapon 참조 실패");
+        }
+        if (!TryGetComponent<IDash>(out dash)) {
+            Debug.Log("PlayerController.cs - IDash 참조 실패");
         }
     }
 
@@ -44,16 +49,18 @@ public class PlayerController : MonoBehaviour, IObjectControl
 
     public void UpdateGame(Vector2 newDir)
     {
+        inputDir = newDir;
         if (Input.GetKeyDown(KeyCode.Space)) {
-            movement?.StartDash(newDir);
+            dash?.StartDash(newDir);
         }
         curWeapon?.Fire(newDir);
+        curWeapon?.ExtraFire(newDir);
     }
 
     public void FixedUpdateGame(Vector2 newDir)
     {
         movement?.Move(newDir);
-        movement?.Dash(newDir);
+        dash?.Dash(newDir);
     }
 
     public void DirUpdate(int key)

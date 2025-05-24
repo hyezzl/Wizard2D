@@ -225,7 +225,7 @@ Transform:
   m_GameObject: {fileID: 816945978}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.4, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2024,7 +2024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefabs:
   - {fileID: 942261748737161017, guid: c68ab3799225cc44db7fefafb08ddade, type: 3}
-  - {fileID: 0}
+  - {fileID: 2044588448215183995, guid: fa10bef2e91051e4bb3d6983684135ec, type: 3}
   - {fileID: 0}
   - {fileID: 0}
 --- !u!4 &2007701578
@@ -2296,6 +2296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 355fbbc756af79940a58c4c21e87970b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDashing: 0
   moveSpeed: 4
   dashPower: 10
   dashDuration: 0.18
@@ -2313,6 +2314,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireTrans: {fileID: 816945979}
   spreadAngle: 20
+  radius: 2
+  turnSpeed: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

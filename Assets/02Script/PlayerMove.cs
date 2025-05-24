@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerMove : MonoBehaviour, IMovement
+public class PlayerMove : MonoBehaviour, IMovement, IDash
 {
     private bool isMoving = false;
-    private bool isDashing = false;
+    public bool isDashing = false;
     [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private float dashPower = 10.0f;
     [SerializeField] private float dashDuration = 0.18f;

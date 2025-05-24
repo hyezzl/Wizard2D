@@ -62,6 +62,8 @@ public class Projectile : MonoBehaviour, IMovement
         ownerTag = newOwner.tag;
 
         SetEnable(true);
+        //if ((int)type == 0)
+        //    Move(moveDir);
         Move(moveDir);
     }
 
@@ -84,16 +86,6 @@ public class Projectile : MonoBehaviour, IMovement
 
 
 
-
-
-
-
-    public void Dash(Vector2 dir)
-    {
-    }
-    public void StartDash(Vector2 dir)
-    {
-    }
     public void SetDir(int key)
     {
     }

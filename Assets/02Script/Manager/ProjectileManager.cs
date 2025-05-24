@@ -13,6 +13,7 @@ public enum ProjectileType {
 public class ProjectileManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] projectilePrefabs;
+    private int allocateCnt;
 
     private void Awake()
     {
@@ -26,9 +27,9 @@ public class ProjectileManager : MonoBehaviour
     private GameObject obj;
     private Projectile proj;
 
-    private void Allocate(ProjectileType type) {
+    private void Allocate(ProjectileType type, int allocateCnt) {
         // 10개씩 미리 생성
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < allocateCnt; i++) {
             obj = Instantiate(projectilePrefabs[(int)type]);
             if (obj.TryGetComponent<Projectile>(out Projectile proj)) {
                 PoolManager.objectPool["Projectile"][(int)type].Enqueue(proj);
@@ -43,11 +44,13 @@ public class ProjectileManager : MonoBehaviour
                                 Vector3 moveDir,
                                 GameObject ownerObj,
                                 int damage,
-                                float moveSpeed)
+                                float moveSpeed,
+                                int allocateCnt)
     {
-        proj = GetProjectile(type);
+        proj = GetProjectile(type, allocateCnt);
         if (proj != null)
         {
+            // 타입따라 다르게?
             proj.transform.position = spawnPos;
             proj.gameObject.SetActive(true);
 
@@ -59,10 +62,10 @@ public class ProjectileManager : MonoBehaviour
         }
     }
 
-    private Projectile GetProjectile(ProjectileType type)
+    public Projectile GetProjectile(ProjectileType type, int allocateCnt)
     {
         if (PoolManager.objectPool["Projectile"][(int)type].Count < 1) {
-            Allocate(type);
+            Allocate(type, allocateCnt);
         }
         return PoolManager.objectPool["Projectile"][(int)type].Dequeue();
     }
