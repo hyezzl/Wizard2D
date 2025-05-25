@@ -17,10 +17,10 @@ public class ProjectileManager : MonoBehaviour
 
     private void Awake()
     {
-        PoolManager.objectPool["Projectile"] = new Queue<Projectile>[projectilePrefabs.Length];
+        PoolManager.projectilePool = new Queue<Projectile>[projectilePrefabs.Length];
         for (int i = 0; i < projectilePrefabs.Length; i++)
         {
-            PoolManager.objectPool["Projectile"][i] = new Queue<Projectile>();
+            PoolManager.projectilePool[i] = new Queue<Projectile>();
         }
     }
 
@@ -32,7 +32,7 @@ public class ProjectileManager : MonoBehaviour
         for (int i = 0; i < allocateCnt; i++) {
             obj = Instantiate(projectilePrefabs[(int)type]);
             if (obj.TryGetComponent<Projectile>(out Projectile proj)) {
-                PoolManager.objectPool["Projectile"][(int)type].Enqueue(proj);
+                PoolManager.projectilePool[(int)type].Enqueue(proj);
             }
             obj.SetActive(false);
         }
@@ -64,14 +64,14 @@ public class ProjectileManager : MonoBehaviour
 
     public Projectile GetProjectile(ProjectileType type, int allocateCnt)
     {
-        if (PoolManager.objectPool["Projectile"][(int)type].Count < 1) {
+        if (PoolManager.projectilePool[(int)type].Count < 1) {
             Allocate(type, allocateCnt);
         }
-        return PoolManager.objectPool["Projectile"][(int)type].Dequeue();
+        return PoolManager.projectilePool[(int)type].Dequeue();
     }
 
     public void ReturnProjectile(ProjectileType type, Projectile proj) {
         proj.gameObject.SetActive(false);
-        PoolManager.objectPool["Projectile"][(int)type].Enqueue(proj);
+        PoolManager.projectilePool[(int)type].Enqueue(proj);
     }
 }

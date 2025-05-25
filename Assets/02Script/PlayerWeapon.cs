@@ -7,11 +7,9 @@ public class PlayerWeapon : MonoBehaviour, IWeapon
 {
     [Header("Config")]
     [SerializeField] private Transform fireTrans;
-    [SerializeField] private float spreadAngle = 20.0f;
-    [SerializeField] private bool isOrbitting = true;
 
     private bool isFiring = false;
-    //private bool isOrbitting = true;
+    private bool isOrbitting = true;
     private bool isBlading = false;
     private bool projSpawned = false;
     private float fireBlockTimer = 0f; // 발사정지시간
@@ -28,6 +26,7 @@ public class PlayerWeapon : MonoBehaviour, IWeapon
     Quaternion fireRotation;
     Vector2 fireDir;
     private float fireInterval = 0.3f;
+    private float spreadAngle = 20.0f;
 
     // > Orbit
     float angle_O = 0f;  // Circular
@@ -152,8 +151,20 @@ public class PlayerWeapon : MonoBehaviour, IWeapon
         
     }
 
-    private void BladeWeapon(Vector2 newDir) { 
+    private void BladeWeapon(Vector2 newDir) {
         // 제한시간동안 처럼 날아가는 3개의 칼날
+        // 현재 위치
+        //if (newDir != Vector2.zero)
+        //{
+        //    lookDir = newDir;
+        //}
+        //Vector3 curPos = transform.position;
+        //float initAngle = 0;
+        //for (int i = 0; i < 3; i++) {
+        //    float angle = initAngle + ( 2 / 3 * Mathf.PI) * i;
+        //    SetEnable(true);
+        //}
+
     }
 
 
