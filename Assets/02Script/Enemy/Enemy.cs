@@ -8,10 +8,13 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IDamaged, IMovement
 {
     [SerializeField] private float moveSpeed = 3.0f;
+    [SerializeField] protected bool isTarget = false;
+
+    public bool IsTarget { get; set; }
 
     protected GameObject player;
     private Rigidbody2D rig;
-    protected bool isTarget = false;
+    //protected bool isTarget = false;
 
     // 적의 사망시점 델리게이트
     public static event Action<Enemy> OnEnemyDie;
@@ -35,16 +38,20 @@ public class Enemy : MonoBehaviour, IDamaged, IMovement
         }
     }
 
+    // Enemy류 오브젝트에 자식오브젝트 생성 + TargetArea에 스크립트 붙여주기
+
 
 
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
+        // 플레이어
         if (collision.CompareTag("Projectile")) { 
             if(collision.TryGetComponent<ProjectileInfo>(out ProjectileInfo projInfo)){
                 if (projInfo.owner == ProjectileOwner.Player) {
-                    // 플레이어의 투사체가 적에게 피격
+                    // 플레이어의 투사체가 적에게 피격 (잘되는거 확인)
                     isTarget = true;
+                    // todo. 피격데미지 구현
                 }
             }
         }
