@@ -60,7 +60,6 @@ public class Projectile : MonoBehaviour, IMovement
         moveSpeed = newSpeed;
         owner = newOwner;
         ownerTag = newOwner.tag;
-
         SetEnable(true);
         //if ((int)type == 0)
         //    Move(moveDir);
@@ -73,14 +72,16 @@ public class Projectile : MonoBehaviour, IMovement
 
         if (collision.CompareTag(ownerTag)) return;
 
+        if (collision.CompareTag(this.tag)) return;
+
         if (collision.CompareTag("DestroyArea"))
         {
             pm.ReturnProjectile(type, this);
         }
         else {
             // todo : 单固瘤 备泅
-
-            pm.ReturnProjectile(type, this);
+            Debug.Log($"构尔 何碟洒绰单? {collision.name}");
+            //pm.ReturnProjectile(type, this);
         }
     }
 

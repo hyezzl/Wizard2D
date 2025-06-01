@@ -5,10 +5,13 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     public enum EnemyType { 
-        Slime,
-
+        slimeG,
+        slimeR,
     }
+
+
     [SerializeField] private GameObject[] enemyPrefabs;
+    private Enemy enemy;
 
     private void Awake()
     {
@@ -16,5 +19,18 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < enemyPrefabs.Length; i++) {
             PoolManager.enemyPool[i] = new Queue<Enemy>();
         }
+        if (!TryGetComponent<Enemy>(out enemy)) {
+            Debug.Log("EnemyManager - Enemy 참조실패");
+        }
+    }
+
+    public void UpdateGame() 
+    {
+        enemy.SetDir(0);
+    }
+
+    public void FixedUpdateGame()
+    {
+        enemy.Move(Vector2.zero);
     }
 }

@@ -32,7 +32,6 @@ public class PlayerMove : MonoBehaviour, IMovement, IDash
     {
         if (isDashing || !isMoving) return;
 
-
         rig.velocity = dir.normalized * moveSpeed;  // 움직이는게 번져보여 ..
 
         //if (isMoving) {

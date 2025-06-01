@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour, IObjectControl
     private IMovement movement;
     private IWeapon curWeapon;
     private IDash dash;
-    private Vector2 inputDir;
 
     private void Awake()
     {
@@ -49,7 +48,6 @@ public class PlayerController : MonoBehaviour, IObjectControl
 
     public void UpdateGame(Vector2 newDir)
     {
-        inputDir = newDir;
         if (Input.GetKeyDown(KeyCode.Space)) {
             dash?.StartDash(newDir);
         }
