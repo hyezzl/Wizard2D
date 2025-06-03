@@ -9,6 +9,7 @@ public class GameManager : Singleton<GameManager>
     IInputHandler curInputSystem;
     private PlayerController pc;
     private ProjectileManager pm;
+    private EnemyManager em;
 
 
 
@@ -32,6 +33,10 @@ public class GameManager : Singleton<GameManager>
         {
             Debug.Log("GameManager.cs - LoadSceneInit - ProjectileManager 참조실패");
         }
+        em = FindAnyObjectByType<EnemyManager>();
+        if (em == null) {
+            Debug.Log("GameManager.cs - LoadSceneInit - EnemyManager 참조실패");
+        }
 
     }
 
@@ -46,10 +51,12 @@ public class GameManager : Singleton<GameManager>
             pc?.UpdateGame(curInputSystem.GetInput());
             pc?.DirUpdate(curInputSystem.GetDir());
         }
+        em?.UpdateGame();
     }
 
     private void FixedUpdate() {
         pc?.FixedUpdateGame(curInputSystem.GetInput());
+        em?.FixedUpdateGame();
     }
 
 

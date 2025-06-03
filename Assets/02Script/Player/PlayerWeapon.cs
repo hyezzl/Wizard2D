@@ -29,10 +29,10 @@ public class PlayerWeapon : MonoBehaviour, IWeapon
     private float spreadAngle = 20.0f;
 
     // > Orbit
+    List<Projectile> orbitProj = new List<Projectile>();
     float angle_O = 0f;  // Circular
     float radius = 1f;
     float turnSpeed = 6f;   // 회전속도
-    List<Projectile> orbitProj = new List<Projectile>();
     int orbitCnt = 1; // 아이템 중첩횟수
 
     // > Blade

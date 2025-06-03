@@ -28,7 +28,7 @@ public class ProjectileManager : MonoBehaviour
     private Projectile proj;
 
     private void Allocate(ProjectileType type, int allocateCnt) {
-        // 10俺究 固府 积己
+        // 固府 积己
         for (int i = 0; i < allocateCnt; i++) {
             obj = Instantiate(projectilePrefabs[(int)type]);
             if (obj.TryGetComponent<Projectile>(out Projectile proj)) {

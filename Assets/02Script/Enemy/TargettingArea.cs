@@ -18,13 +18,15 @@ public class TargettingArea : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Enemy enemy = transform.parent.GetComponent<Enemy>();
         if (collision.gameObject == transform.parent.gameObject) return;
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && enemy.IsTarget == false)
         {
-            transform.parent.GetComponent<Enemy>().IsTarget = true;
+            enemy.IsTarget = true;
             Debug.Log("플레이어 타겟팅 ON");
         }
         else
+            // 타겟팅 후 부딪혀도 여기 분기문
             Debug.Log($"TargettingArea 와 {collision.name} 가 부딪힘");
     }
 }

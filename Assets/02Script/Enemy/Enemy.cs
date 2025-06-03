@@ -14,7 +14,6 @@ public class Enemy : MonoBehaviour, IDamaged, IMovement
 
     protected GameObject player;
     private Rigidbody2D rig;
-    //protected bool isTarget = false;
 
     // 적의 사망시점 델리게이트
     public static event Action<Enemy> OnEnemyDie;
@@ -37,8 +36,6 @@ public class Enemy : MonoBehaviour, IDamaged, IMovement
             col.isTrigger = true;
         }
     }
-
-    // Enemy류 오브젝트에 자식오브젝트 생성 + TargetArea에 스크립트 붙여주기
 
 
 

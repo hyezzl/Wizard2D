@@ -80,7 +80,7 @@ public class Projectile : MonoBehaviour, IMovement
         }
         else {
             // todo : µ¥¹ÌÁö ±¸Çö
-            Debug.Log($"¹¹¶û ºÎµúÈ÷´Âµ¥? {collision.name}");
+            Debug.Log($"{owner.name}ÀÇ ÃÑ¾Ë°ú {collision.name}°¡ ºÎµúÈû!");
             //pm.ReturnProjectile(type, this);
         }
     }
